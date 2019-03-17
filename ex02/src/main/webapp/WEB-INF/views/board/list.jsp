@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="../includes/header.jsp"%>
+<!-- 게시글 리스트 -->
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">Tables</h1>
