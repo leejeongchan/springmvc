@@ -27,7 +27,7 @@ public class BoardController {
 		log.info("list");
 		model.addAttribute("list",service.getList());
 	}
-	// /board/register GET 방식일 때 등록 폼을 사용자에게 보여준다.
+	// /board/register GET 방식일 때 버튼을 눌러서 등록 폼을 사용자에게 보여준다.
 	@GetMapping("/register")
 	public void register() {
 		
@@ -39,14 +39,15 @@ public class BoardController {
 	{
 		log.info("register: "+board);
 		service.register(board);
+		//등록 글 번호 모달 창 띄우기 위함
 		rttr.addFlashAttribute("result",board.getBno());
 		return "redirect:/board/list";
 	}
 	
-	// /board/get 으로 GET방식으로 조회할 게시글 번호를 bno로 넘겨서 해당 게시글 조회하기
-	@GetMapping("/get")
+	// /board/get or /board/modify 으로 GET방식으로 조회할 게시글 번호를 bno로 넘겨서 해당 게시글 조회,수정하기
+	@GetMapping({"/get","/modify"})
 	public void get(@RequestParam("bno") Long bno,Model model) {
-		log.info("/get");
+		log.info("/get or modify");
 		model.addAttribute("board",service.get(bno));
 	}
 	

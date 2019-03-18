@@ -32,7 +32,7 @@
 					<div class="form-group">
 						<label>Writer</label> <input class="form-control" name="writer" value='<c:out value="${board.writer}"/>' readonly="readonly">
 					</div>
-					
+					<!-- 수정 창 이동 GET 방식으로 컨트롤러에서 modfiy.jsp 보여줌 -->
 					<button data-oper="modify" class="btn btn-default"><a href="/board/modify?bno=<c:out value="${board.bno}"/>">Modify</a></button>
 					<button data-oper="list" class="btn btn-info"><a href="/board/list">List</a></button>
 	
