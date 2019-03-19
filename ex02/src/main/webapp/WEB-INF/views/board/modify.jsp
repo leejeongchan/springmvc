@@ -88,8 +88,8 @@
 				
 			}else if(operation === 'list'){ 
 				//move to list GET이기 때문에
-				self.location = "/board/list";
-				return ;
+				formObj.attr("action","/board/list").attr("method","get");
+				formObj.empty();
 			}
 			formObj.submit(); //e.preventDefault로 기본 기능 막았으므로 누르기 를 통해 적용
 		});
