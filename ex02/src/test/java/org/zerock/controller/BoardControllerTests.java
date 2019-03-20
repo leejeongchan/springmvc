@@ -33,6 +33,15 @@ public class BoardControllerTests {
 	}
 	
 	@Test
+	public void testListPaging() throws Exception{
+		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/list")
+				.param("pageNum", "2")
+				.param("amount", "10"))
+				.andReturn().getModelAndView().getModelMap());
+				
+	}
+	
+	/*@Test
 	public void testList() throws Exception{
 		log.info(
 				mockMvc.perform(MockMvcRequestBuilders.get("/board/list")).andReturn().getModelAndView().getModelMap());
@@ -82,5 +91,5 @@ public class BoardControllerTests {
 		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/remove")
 				.param("bno", "23")).andReturn().getModelAndView().getViewName();
 		log.info(resultPage);
-	}
+	}*/
 }

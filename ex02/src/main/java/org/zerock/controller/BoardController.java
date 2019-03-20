@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
+import org.zerock.domain.PageDTO;
 import org.zerock.service.BoardService;
 
 import lombok.AllArgsConstructor;
@@ -21,12 +23,20 @@ public class BoardController {
 	
 	private BoardService service;
 	// /board/list 에의한 전체 테이블 목록 보여주기 GET 방식으로 요청이 들어온다.
-	@GetMapping("/list")
+	/*@GetMapping("/list")
 	public void list(Model model)
 	{
 		log.info("list");
 		model.addAttribute("list",service.getList());
+	}*/
+	
+	@GetMapping("/list")
+	public void list(Criteria cri,Model model) {
+		log.info("list: " +cri);
+		model.addAttribute("list",service.getList(cri));
+		model.addAttribute("pageMaker",new PageDTO(cri,123));
 	}
+	
 	// /board/register GET 방식일 때 버튼을 눌러서 등록 폼을 사용자에게 보여준다.
 	@GetMapping("/register")
 	public void register() {
