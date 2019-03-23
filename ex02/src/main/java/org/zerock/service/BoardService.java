@@ -22,4 +22,6 @@ public interface BoardService {
 	
 	//페이징 게시글 리스트 받기
 	public List<BoardVO> getList(Criteria cri);
+	
+	public int getTotal(Criteria cri);
 }

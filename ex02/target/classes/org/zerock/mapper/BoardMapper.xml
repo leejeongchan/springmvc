@@ -59,5 +59,8 @@ select * from tbl_board where bno>0
 	]]>
 </select>
 
+<select id="getTotalCount" resultType="int">
+	select count(*) from tbl_board where bno>0
+</select>
 
 </mapper>

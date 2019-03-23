@@ -18,6 +18,10 @@
 			<div class="panel-body">
 			
 			<form role="form" action="/board/modify" method="post">
+			<!-- list이동시 페이지 유지하기 위함 -->
+			<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
+			<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
+			
 				<div class="form-group">
 					<label>Bno</label> <input class="form-control" name="bno"
 						value='<c:out value="${board.bno}"/>' readonly="readonly">
@@ -30,8 +34,8 @@
 
 				<div class="form-group">
 					<label>Text area</label>
-					<textarea class="form-control" name="content" rows="3"
-						value='<c:out value="${board.content}"/>'></textarea>
+					<textarea class="form-control" name="content" rows="3">
+					<c:out value="${board.content}"/></textarea>
 				</div>
 
 				<div class="form-group">
@@ -89,7 +93,12 @@
 			}else if(operation === 'list'){ 
 				//move to list GET이기 때문에
 				formObj.attr("action","/board/list").attr("method","get");
+				var pageNumTag = $("input[name='pageNum']").clone();
+				var amountTag = $("input[name='amount']").clone();
+				
 				formObj.empty();
+				formObj.append(pageNumTag);
+				formObj.append(amountTag);
 			}
 			formObj.submit(); //e.preventDefault로 기본 기능 막았으므로 누르기 를 통해 적용
 		});

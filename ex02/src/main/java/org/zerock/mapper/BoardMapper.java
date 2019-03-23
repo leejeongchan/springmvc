@@ -15,6 +15,7 @@ import org.zerock.domain.Criteria;
  * read(Long bno): 게시글 번호로 조회
  * delete(Long bno): 게시글 번호로 해당 게시글 삭제
  * update(BoardVO board): 해당 게시글 수정
+ * getTotalCount(Criteria cri): 게시글 총 개수 구하기
  */
 public interface BoardMapper {
 	
@@ -31,4 +32,6 @@ public interface BoardMapper {
 	public int delete(Long bno);
 	
 	public int update(BoardVO board);
+	
+	public int getTotalCount(Criteria cri);
 }

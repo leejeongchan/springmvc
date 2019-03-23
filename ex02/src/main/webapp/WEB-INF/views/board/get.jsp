@@ -26,7 +26,7 @@
 					</div>
 					
 					<div class="form-group">
-						<label>Text area</label> <textarea class="form-control" name="content" rows="3" value='<c:out value="${board.content}"/>' readonly="readonly"></textarea>
+						<label>Text area</label> <textarea class="form-control" name="content" rows="3" readonly="readonly"><c:out value="${board.content}"/></textarea>
 					</div>
 					
 					<div class="form-group">
@@ -38,6 +38,8 @@
 					
 					<form id="operForm" action="/board/modify" method="get">
 						<input type="hidden" id="bno" name="bno" value="<c:out value="${board.bno }"/>">
+						<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
+						<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
 					</form>
 	
 			</div>

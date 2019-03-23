@@ -36,7 +36,8 @@
 					<c:forEach items="${list}" var="board">
 						<tr>
 							<td><c:out value="${board.bno}" /></td>
-							<td><a href='/board/get?bno=<c:out value="${board.bno}"/>'><c:out
+							<!-- 자바스크립트로 이동 처리하기 페이지 이동후 게시글 조회후 다시 목록으로 이동시 1페이지로 이동하는것을 방지 -->
+							<td><a class='move' href='<c:out value="${board.bno}"/>'><c:out
 										value="${board.title}" /></a></td>
 							<td><c:out value="${board.writer}" /></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd"
@@ -65,7 +66,8 @@
 					
 					</ul>
 				</div>
-				
+				<!-- 위에서 클래스 id가 move인 것을 통해 해당 페이지 번호와 게시글 번호 amount를 전달 이는 밑 자바스크립트에서 기능 구현
+				동적으로 append로 추가하기 -->
 				<form id="actionForm" action="/board/list" method="get">
 					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 					<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
@@ -139,6 +141,13 @@
 					console.log("click");
 					
 					actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+					actionForm.submit();
+				});
+				//게시글 클릭시 pageNum과 amount와 게시글 번호bno를 함께 전달 get방식으로 actionForm action속성을 변형시킴
+				$(".move").on("click",function(e){
+					e.preventDefault();
+					actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'>");
+					actionForm.attr("action","/board/get");
 					actionForm.submit();
 				});
 
